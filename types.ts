@@ -66,8 +66,8 @@ export interface BillingRecord {
 }
 
 export interface RevenueConfig {
-  platformCommission: number; // percentage
-  taxRate: number; // percentage
+  platformCommission: number; 
+  taxRate: number; 
   revenueSplit: {
     platform: number;
     referral?: number;
@@ -88,43 +88,10 @@ export interface Store {
   violationCount?: number;
 }
 
-export interface Permission {
-  id: string;
-  name: string;
-  key: string;
-  description: string;
-  category: 'core' | 'store' | 'finance' | 'system';
-}
-
-export interface RoleConfig {
-  role: UserRole;
-  permissions: string[];
-}
-
-export interface Product {
-  id: string;
-  storeId: string;
-  name: string;
-  category: 'Laptop' | 'Accessory' | 'Part';
-  price: number;
-  stock: number;
-  image: string;
-}
-
-export interface ServiceTicket {
-  id: string;
-  customerId: string;
-  storeId: string;
-  device: string;
-  issue: string;
-  status: 'PENDING' | 'DIAGNOSING' | 'REPAIRING' | 'READY' | 'COMPLETED';
-  technicianId?: string;
-  createdAt: string;
-}
-
+// Fixed: Add missing NavItem interface for navigation components
 export interface NavItem {
   label: string;
   path: string;
-  icon: React.ReactNode;
+  icon: any;
   roles: UserRole[];
 }

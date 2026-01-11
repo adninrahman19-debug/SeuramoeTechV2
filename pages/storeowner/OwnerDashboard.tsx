@@ -1,68 +1,39 @@
 
-import React from 'react';
-import StatCard from '../../components/Shared/StatCard';
-import { ICONS } from '../../constants';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-
-const data = [
-  { name: 'Mon', sales: 12 }, { name: 'Tue', sales: 19 }, { name: 'Wed', sales: 3 },
-  { name: 'Thu', sales: 5 }, { name: 'Fri', sales: 2 }, { name: 'Sat', sales: 3 },
-];
+import React, { useState } from 'react';
+import OwnerOverview from './OwnerOverview';
+import StaffControl from './StaffControl';
 
 const OwnerDashboard: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<'overview' | 'staff' | 'inventory'>('overview');
+
   return (
     <div className="space-y-8 animate-in slide-in-from-bottom-4 duration-500">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col lg:flex-row justify-between lg:items-center gap-6">
         <div>
-          <h1 className="text-3xl font-black text-white">Store Management</h1>
-          <p className="text-slate-400 mt-1">Manage your business operations and subscription.</p>
-        </div>
-        <div className="px-4 py-2 bg-indigo-500/10 border border-indigo-500/50 rounded-xl">
-          <span className="text-xs font-bold text-indigo-400 uppercase tracking-widest">Plan: Sumatra Expansion</span>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <StatCard label="Monthly Sales" value="Rp 128.4M" trend="+5.2%" icon={<ICONS.Package />} colorClass="indigo" />
-        <StatCard label="Total Staff" value="8 / 10" icon={<ICONS.Users />} colorClass="violet" />
-        <StatCard label="Inventory Level" value="156 Items" icon={<ICONS.Store />} colorClass="emerald" />
-        <StatCard label="Service Queue" value="14 Tickets" trend="+2" icon={<ICONS.Ticket />} colorClass="amber" />
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2 glass-panel p-6 rounded-2xl border-slate-800">
-          <h3 className="text-lg font-bold text-white mb-6">Daily Sales Volume</h3>
-          <div className="h-[300px] w-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={data}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
-                <XAxis dataKey="name" stroke="#64748b" fontSize={12} tickLine={false} axisLine={false} />
-                <YAxis stroke="#64748b" fontSize={12} tickLine={false} axisLine={false} />
-                <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
-                <Bar dataKey="sales" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
+          <h1 className="text-3xl font-black text-white">Store Command Center</h1>
+          <p className="text-slate-400 mt-1">Aceh Tech Center • Operational Management</p>
         </div>
         
-        <div className="glass-panel p-6 rounded-2xl border-slate-800">
-          <h3 className="text-lg font-bold text-white mb-4">Quick Actions</h3>
-          <div className="space-y-3">
-            <button className="w-full p-4 bg-slate-800 hover:bg-slate-700 rounded-xl text-left flex items-center gap-3 transition-all border border-slate-700">
-              <div className="p-2 bg-indigo-500/20 text-indigo-400 rounded-lg"><ICONS.Plus className="w-5 h-5" /></div>
-              <span className="font-semibold text-sm">Add New Product</span>
+        <div className="glass-panel p-1 rounded-2xl flex gap-1 shadow-2xl border-slate-800">
+          {(['overview', 'staff', 'inventory'] as const).map(tab => (
+            <button 
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${activeTab === tab ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/20' : 'text-slate-400 hover:text-white'}`}
+            >
+              {tab}
             </button>
-            <button className="w-full p-4 bg-slate-800 hover:bg-slate-700 rounded-xl text-left flex items-center gap-3 transition-all border border-slate-700">
-              <div className="p-2 bg-emerald-500/20 text-emerald-400 rounded-lg"><ICONS.Users className="w-5 h-5" /></div>
-              <span className="font-semibold text-sm">Add Staff Account</span>
-            </button>
-            <button className="w-full p-4 bg-slate-800 hover:bg-slate-700 rounded-xl text-left flex items-center gap-3 transition-all border border-slate-700">
-              <div className="p-2 bg-amber-500/20 text-amber-400 rounded-lg"><ICONS.Ticket className="w-5 h-5" /></div>
-              <span className="font-semibold text-sm">Create Promo Voucher</span>
-            </button>
-          </div>
+          ))}
         </div>
       </div>
+
+      {activeTab === 'overview' && <OwnerOverview />}
+      {activeTab === 'staff' && <StaffControl />}
+      {activeTab === 'inventory' && (
+        <div className="flex items-center justify-center p-20 glass-panel rounded-3xl border-slate-800 text-slate-500 italic">
+          Inventory Control Module coming soon in next update.
+        </div>
+      )}
     </div>
   );
 };
