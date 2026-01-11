@@ -43,7 +43,8 @@ export enum OrderStatus {
   PROCESSING = 'PROCESSING',
   SHIPPED = 'SHIPPED',
   COMPLETED = 'COMPLETED',
-  CANCELLED = 'CANCELLED'
+  CANCELLED = 'CANCELLED',
+  REFUND_REQUESTED = 'REFUND_REQUESTED'
 }
 
 export enum ProductStatus {

@@ -28,6 +28,7 @@ const Dashboard: React.FC<DashboardProps> = ({ activeTab, onTabChange }) => {
     case UserRole.STAFF_ADMIN:
     case UserRole.TECHNICIAN:
     case UserRole.MARKETING:
+      // Staff uses internal tab state now to manage the complex admin hub
       return <StaffDashboard activeTab={activeTab as any} />;
     
     case UserRole.CUSTOMER:
