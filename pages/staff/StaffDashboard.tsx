@@ -5,7 +5,11 @@ import { UserRole } from '../../types';
 import PerformanceStats from './PerformanceStats';
 import TaskQueue from './TaskQueue';
 
-const StaffDashboard: React.FC = () => {
+interface StaffDashboardProps {
+  activeTab: string;
+}
+
+const StaffDashboard: React.FC<StaffDashboardProps> = ({ activeTab }) => {
   const user = AuthService.getCurrentUser();
   const isTechnician = user?.role === UserRole.TECHNICIAN;
 
@@ -16,8 +20,13 @@ const StaffDashboard: React.FC = () => {
         <p className="text-slate-400 mt-1">Hello {user?.fullName}, here are your assignments for today.</p>
       </div>
 
-      <PerformanceStats isTechnician={isTechnician} />
-      <TaskQueue isTechnician={isTechnician} />
+      <div className="animate-in fade-in duration-500">
+        <PerformanceStats isTechnician={isTechnician} />
+      </div>
+
+      <div className="animate-in slide-in-from-bottom-6 duration-700">
+        <TaskQueue isTechnician={isTechnician} />
+      </div>
     </div>
   );
 };

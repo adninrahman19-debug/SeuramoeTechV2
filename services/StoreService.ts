@@ -69,7 +69,7 @@ class StoreService {
   }
 
   static resetStoreData(storeId: string) {
-    // In demo, we just log this. In production, this would wipe related DB records.
+    // In demo, we just alert. In production, this would wipe related DB records.
     alert(`Data untuk Toko ${storeId} telah di-reset ke pengaturan pabrik.`);
   }
 }

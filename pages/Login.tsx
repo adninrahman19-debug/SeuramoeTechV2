@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import AuthService from '../auth/AuthService';
 import { User, UserRole } from '../types';
+import Logo from '../components/Shared/Logo';
 
 interface LoginProps {
   onLoginSuccess: (user: User) => void;
@@ -72,7 +73,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center p-6 bg-[#020617] relative overflow-hidden">
+    <div className="min-h-screen w-full flex items-center justify-center p-6 bg-[#020617] relative overflow-hidden text-slate-300">
       {/* Background Glow */}
       <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-indigo-600/10 rounded-full blur-[120px] animate-pulse"></div>
       <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-blue-600/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '2s' }}></div>
@@ -82,9 +83,9 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
         {/* Left Side: Form */}
         <div className="w-full max-w-md mx-auto">
           <div className="text-center lg:text-left mb-8">
-            <div className="w-14 h-14 rounded-2xl bg-indigo-600 flex items-center justify-center text-2xl font-black text-white mb-6 shadow-xl shadow-indigo-600/20 lg:mx-0 mx-auto">ST</div>
-            <h1 className="text-4xl font-black text-white tracking-tight leading-none">Selamat Datang</h1>
-            <p className="text-slate-400 mt-3 font-medium">Masuk ke ekosistem teknologi SeuramoeTech.</p>
+            <Logo size="lg" className="mb-8 justify-center lg:justify-start" />
+            <h1 className="text-4xl font-black text-white tracking-tight leading-tight">Mulai Transformasi Digital Anda</h1>
+            <p className="text-slate-400 mt-4 font-medium leading-relaxed">Ekosistem teknologi terintegrasi untuk bisnis modern di Aceh dan Sumatra.</p>
           </div>
 
           <div className="glass-panel p-1 rounded-2xl flex mb-6">
@@ -125,8 +126,8 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
         {/* Right Side: Quick Access Buttons */}
         <div className="hidden lg:block space-y-8 animate-in slide-in-from-right-12 duration-700">
           <div>
-            <h2 className="text-2xl font-bold text-white mb-2">Akses Cepat Pengguna</h2>
-            <p className="text-slate-500 text-sm">Pilih salah satu akun simulasi untuk masuk secara instan ke dalam sistem.</p>
+            <h2 className="text-2xl font-bold text-white mb-2 tracking-tight">Eksplorasi Peran Pengguna</h2>
+            <p className="text-slate-500 text-sm">Pilih salah satu akun demo untuk memahami alur kerja ekosistem SeuramoeTech.</p>
           </div>
           
           <div className="grid grid-cols-2 gap-4">
@@ -136,25 +137,25 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
                 onClick={() => handleQuickAccess(acc.user, acc.pass)}
                 className="group flex items-center gap-4 p-4 bg-slate-900/40 border border-slate-800 rounded-2xl text-left hover:border-indigo-500/50 hover:bg-indigo-500/5 transition-all"
               >
-                <div className={`w-12 h-12 rounded-xl bg-${acc.color}-500/10 flex items-center justify-center border border-${acc.color}-500/20 group-hover:scale-110 transition-transform`}>
+                <div className={`w-12 h-12 rounded-xl bg-slate-950 flex items-center justify-center border border-slate-800 group-hover:scale-110 transition-transform shadow-lg`}>
                    <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${acc.user}`} alt="avatar" className="w-10 h-10" />
                 </div>
                 <div className="overflow-hidden">
                   <h4 className="text-white font-bold text-sm truncate">{acc.name}</h4>
-                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">{acc.role}</p>
+                  <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest">{acc.role}</p>
                 </div>
               </button>
             ))}
           </div>
 
-          <div className="p-6 rounded-2xl bg-indigo-600/10 border border-indigo-600/20">
+          <div className="p-6 rounded-3xl bg-indigo-600/10 border border-indigo-500/20">
             <div className="flex gap-4 items-start">
-              <div className="p-2 bg-indigo-600 rounded-lg">
+              <div className="p-2 bg-indigo-600 rounded-xl shadow-lg shadow-indigo-600/20">
                 <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
               </div>
               <div>
-                <h4 className="text-sm font-bold text-white mb-1">Informasi Hak Akses</h4>
-                <p className="text-xs text-slate-400 leading-relaxed">Sistem ini menggunakan Role-Based Access Control (RBAC). Setiap pengguna hanya dapat mengakses fitur sesuai dengan izin perannya masing-masing.</p>
+                <h4 className="text-sm font-bold text-white mb-1">Infrastruktur Keamanan</h4>
+                <p className="text-xs text-slate-400 leading-relaxed">Platform dilindungi dengan protokol otentikasi ganda dan kontrol akses berbasis peran (RBAC) tingkat lanjut.</p>
               </div>
             </div>
           </div>
@@ -162,10 +163,10 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
         
         {/* Mobile Quick Access (Simplified) */}
         <div className="lg:hidden mt-8 text-center">
-            <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mb-4">Akses Cepat (Mobile)</p>
+            <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mb-4">Akses Cepat Demo</p>
             <div className="flex flex-wrap justify-center gap-2">
                 {demoAccounts.slice(0, 3).map(acc => (
-                    <button key={acc.user} onClick={() => handleQuickAccess(acc.user, acc.pass)} className="px-3 py-2 bg-slate-900 border border-slate-800 rounded-lg text-[10px] font-bold text-slate-400 hover:text-white transition-colors">
+                    <button key={acc.user} onClick={() => handleQuickAccess(acc.user, acc.pass)} className="px-4 py-2 bg-slate-900 border border-slate-800 rounded-xl text-[10px] font-bold text-slate-400 hover:text-white transition-colors">
                         {acc.name}
                     </button>
                 ))}
@@ -175,7 +176,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
       </div>
 
       <footer className="absolute bottom-8 left-0 right-0 text-center">
-         <p className="text-slate-600 text-[10px] font-bold uppercase tracking-[0.3em]">
+         <p className="text-slate-600 text-[10px] font-black uppercase tracking-[0.4em]">
             &copy; 2024 SeuramoeTech Platform • Regional Aceh & Sumatra
          </p>
       </footer>

@@ -7,7 +7,12 @@ import OwnerDashboard from './storeowner/OwnerDashboard';
 import StaffDashboard from './staff/StaffDashboard';
 import CustomerDashboard from './customer/CustomerDashboard';
 
-const Dashboard: React.FC = () => {
+interface DashboardProps {
+  activeTab: string;
+  onTabChange: (tab: any) => void;
+}
+
+const Dashboard: React.FC<DashboardProps> = ({ activeTab, onTabChange }) => {
   const user = AuthService.getCurrentUser();
 
   if (!user) return null;
@@ -15,18 +20,18 @@ const Dashboard: React.FC = () => {
   // Dispatcher logic based on role
   switch (user.role) {
     case UserRole.SUPER_ADMIN:
-      return <SuperAdminDashboard />;
+      return <SuperAdminDashboard activeTab={activeTab as any} onTabChange={onTabChange} />;
     
     case UserRole.STORE_OWNER:
-      return <OwnerDashboard />;
+      return <OwnerDashboard activeTab={activeTab as any} onTabChange={onTabChange} />;
     
     case UserRole.STAFF_ADMIN:
     case UserRole.TECHNICIAN:
     case UserRole.MARKETING:
-      return <StaffDashboard />;
+      return <StaffDashboard activeTab={activeTab as any} />;
     
     case UserRole.CUSTOMER:
-      return <CustomerDashboard />;
+      return <CustomerDashboard activeTab={activeTab as any} />;
     
     default:
       return (

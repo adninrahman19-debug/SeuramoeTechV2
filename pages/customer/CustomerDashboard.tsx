@@ -4,7 +4,11 @@ import { ICONS } from '../../constants';
 import RepairsTracker from './RepairsTracker';
 import OrderHistory from './OrderHistory';
 
-const CustomerDashboard: React.FC = () => {
+interface CustomerDashboardProps {
+  activeTab: 'overview' | 'repairs' | 'orders';
+}
+
+const CustomerDashboard: React.FC<CustomerDashboardProps> = ({ activeTab }) => {
   return (
     <div className="space-y-8 animate-in slide-in-from-bottom-4 duration-500">
       <div className="flex flex-col md:flex-row justify-between md:items-center gap-4">
@@ -17,10 +21,19 @@ const CustomerDashboard: React.FC = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <RepairsTracker />
-        <OrderHistory />
-      </div>
+      {(activeTab === 'overview' || activeTab === 'repairs') && (
+         <div className="animate-in fade-in duration-300">
+            <h3 className="text-xs font-black text-slate-500 uppercase tracking-[0.3em] mb-4">Device Repairs</h3>
+            <RepairsTracker />
+         </div>
+      )}
+
+      {(activeTab === 'overview' || activeTab === 'orders') && (
+         <div className="animate-in fade-in duration-300 mt-8">
+            <h3 className="text-xs font-black text-slate-500 uppercase tracking-[0.3em] mb-4">Purchase History</h3>
+            <OrderHistory />
+         </div>
+      )}
     </div>
   );
 };
