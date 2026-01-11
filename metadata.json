@@ -1,0 +1,8 @@
+{
+  "name": "SeuramoeTech - Aceh Tech Ecosystem",
+  "description": "A comprehensive SaaS platform for laptop sales, service management, and technology retail in the Aceh and Sumatra region, featuring robust role-based access and subscription-driven controls.",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation"
+  ]
+}
